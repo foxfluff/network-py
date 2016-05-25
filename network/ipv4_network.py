@@ -1,11 +1,10 @@
-
 import network
 
 class Ipv4Net(network.Network):
     
     def __init__(self, net_id, netmask):
         self.network_id = net_id
-        pass
+        self.netmask = netmask
 
     @property
     def network_id(self):
