@@ -22,8 +22,7 @@ class Ipv4Net(network.Network):
     @netmask.setter
     def netmask(self, addr):
         # TODO: Bug test
-        raise ArithmeticError #broken logic below, needs to be fixed
-        if math.log(addr + 1, 2) % 1: #Should resolve to 0 (aka False) when a real netmask
+        if math.log(2**32 + 1 + ~addr, 2) % 1: #Should resolve to 0 (aka False) when a real netmask
             raise ValueError("Improper value for netmask %s, must be address \
                              with only consecutive bits" %addr)
         else:
