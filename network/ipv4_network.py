@@ -22,12 +22,12 @@ class Ipv4Net(network.Network):
     @netmask.setter
     def netmask(self, addr):
         # TODO: Bug test
-        if math.log(addr + 1, 2) % 1 == 0:
-            self._mask = addr
-        else:
+        cidr = int(math.log(addr + 1, 2))
+        if 2**cidr != addr + 1:
             raise ValueError("Improper value for netmask %s, must be address \
                              with only consecutive bits" %addr)
-
+        else:
+            self._mask = addr
 
     # do i even need these functions or should I instead use something like pop/set/builtins etc
     def addhost(self, host):
